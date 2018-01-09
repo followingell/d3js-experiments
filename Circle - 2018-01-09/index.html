@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>d3 Experiments: Circle - 09-01-2018</title>
+		<script type="text/javascript" src="http://d3js.org/d3.v4.js"></script>
+		<style type="text/css">
+				
+			html, body {
+			height: 100%;
+			background: #c5c8ca;
+			margin: 0;
+			}
+
+			html, body {
+				height: 100%;
+				box-sizing: border-box;
+
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+
+				display: -webkit-flex;
+				-webkit-flex-direction: row;
+				-webkit-justify-content: center;
+				-webkit-align-items: center;
+				}
+        	
+        	circles {
+        		shape-rendering: crispEdges;
+        	}
+
+		</style>
+	</head>
+	
+	<body>
+		<script>
+
+		var boxWidth 		= 300
+			boxHeight 		= 300
+			cirlceDuration 	= 2000
+
+		// Make an SVG container
+		var svgContainer = d3.select("body").append("svg")
+			.attr("width", boxWidth)
+			.attr("height", boxHeight)
+			.style("background-color", "black")
+				.on("mouseover", function(){
+					d3.select(this)
+					.transition()
+					.duration(cirlceDuration)
+					.ease(d3.easeExp)
+					.style("background-color","white")
+				})
+				.on("mouseout", function(){
+					d3.select(this)
+					.transition()
+					.duration(cirlceDuration)
+					.ease(d3.easeExp)
+					.style("background-color","black")
+				});
+
+			// Draw the circle		
+			var circle = svgContainer.append("circle")
+				.attr("cx", (boxWidth * 0.25))
+				.attr("cy", (boxHeight * 0.25))
+				.attr("r", (boxWidth / 7))
+				.attr("class", "circles")
+				.attr("fill", "white")
+					.on("mouseover", function(){
+						d3.select(this)
+						.transition()
+						.duration(cirlceDuration)
+						.ease(d3.easeExp)
+						.attr("fill","black")
+						.attr("cx", (boxWidth * 0.5))
+						.attr("cy", (boxHeight * 0.5))
+					})
+					.on("mouseout", function(){
+						d3.select(this)
+						.transition()
+						.duration(cirlceDuration)
+						.ease(d3.easeExp)
+						.attr("fill","white")
+						.attr("cx", (boxWidth * 0.25))
+						.attr("cy", (boxHeight * 0.25))
+					});
+
+		// Create Spacing Block
+		var svgSpacingBlock = d3.select("body").append("svg")
+			.attr("width", 10)
+			.attr("height", boxHeight);
+
+		// Make 2nd SVG container
+		var svgContainer2 = d3.select("body").append("svg")
+			.attr("width", boxWidth)
+			.attr("height", boxHeight)
+			.style("background-color", "white")
+				.on("mouseover", function(){
+					d3.select(this)
+					.transition()
+					.duration(cirlceDuration)
+					.ease(d3.easeExp)
+					.style("background-color","black")
+				})
+				.on("mouseout", function(){
+					d3.select(this)
+					.transition()
+					.duration(cirlceDuration)
+					.ease(d3.easeExp)
+					.style("background-color","white")
+				});
+
+			// Draw 2nd circle		
+			var circle2 = svgContainer2.append("circle")
+				.attr("cx", (boxWidth * 0.75))
+				.attr("cy", (boxHeight * 0.75))
+				.attr("r", (boxWidth / 7))
+				.attr("class", "circles")
+				.attr("fill", "black")
+					.on("mouseover", function(){
+						d3.select(this)
+						.transition()
+						.duration(2000)
+						.ease(d3.easeExp)
+						.attr("fill","white")
+						.attr("cx", (boxWidth * 0.5))
+						.attr("cy", (boxHeight * 0.5))
+					})
+					.on("mouseout", function(){
+						d3.select(this)
+						.transition()
+						.duration(2000)
+						.ease(d3.easeExp)
+						.attr("fill","black")
+						.attr("cx", (boxWidth * 0.75))
+						.attr("cy", (boxHeight * 0.75))
+					});
+		</script>
+	</body>
+</html>
