@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>d3 Experiments: Column Waves Lines - 10-01-2018</title>
+		<script type="text/javascript" src="http://d3js.org/d3.v4.js"></script>
+		<style type="text/css">
+				
+			html, body {
+			height: 100%;
+			background: #c5c8ca;
+			margin: 0;
+			}
+
+			html, body {
+				height: 100%;
+				box-sizing: border-box;
+
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+
+				display: -webkit-flex;
+				-webkit-flex-direction: row;
+				-webkit-justify-content: center;
+				-webkit-align-items: center;
+				}
+        	
+		</style>
+	</head>
+	
+	<body>
+		<script>
+
+		var sizeVar			= 1,
+
+			boxWidth 		= (300 * sizeVar), 
+			boxHeight 		= (300 * sizeVar),
+			rectWidth		= ((boxWidth / 8) * sizeVar),
+			rectHeight		= (3 * sizeVar),
+			spaceWidth		= (1 * sizeVar),
+			marginVar		= (1 * sizeVar),
+			cols			= (10 * sizeVar),
+			rows			= (100 * sizeVar),
+			duration		= (3000 * sizeVar),
+			yRectStart		= ("y");
+
+		// Make an SVG container
+		var svgContainer = d3.select("body").append("svg")
+			.attr("width", boxWidth)
+			.attr("height", boxHeight)
+			.style("background-color", "black");
+
+			// Draw the Rect		
+			var rect = svgContainer.append("rect")
+				.attr("width", (rectWidth - marginVar))
+				.attr("height", (rectHeight- marginVar))
+				.attr("fill", "white")
+					.on("click",function(){
+						d3.select(this)
+						.transition()
+							.attr("transform", "translate(0," + (boxHeight - marginVar) + ")")
+							.duration(2000)
+					})
+					.on("click",function(){
+						d3.select(this)
+						.transition()
+							.attr("transform", "translate(0," + ((boxHeight - marginVar)- boxHeight) + ")")
+							.duration(2000)
+					});
+		</script>
+	</body>
+</html>
